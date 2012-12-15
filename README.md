@@ -1,11 +1,20 @@
-LedTextCreator
+TinyBmp
 ==============
+A small project for generating a tiny bitmap image from some numbers.
 
-Some fun stuff for generating a (tiny) bmp from some text.
+TinyBmpLib
+-------------
+The lib that does the magic.
+ 
+TinyBmp
+-------------
+![TinyBmp main screen](TinyBmpSample.PNG)
 
-CmDataWriter - The lib that does the magic
-DataWriter - A Windows Form app for testing
-DataWriterConsole - A console app for automating the generation of this. 
+A desktop app that shows a preview of the generated image.
+
+DataWriterConsole
+-------------
+A console app for automating the generation of images.
 
 * First parameter: Number to print
 * Second parameter: output file
