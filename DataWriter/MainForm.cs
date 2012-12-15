@@ -1,14 +1,6 @@
 ﻿using DataWriterLib;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DataWriter
@@ -20,13 +12,26 @@ namespace DataWriter
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGenerate_Click(object sender, EventArgs e)
         {
-            Image image = new TextDrawer().DrawText(textBox1.Text, new Font("Tiny Fonts", 4, GraphicsUnit.Point), Color.Black, Color.White);
-            image.Save("image.bmp");
+            image = new TextDrawer().DrawText(textBox1.Text, new Font("Tiny Fonts", 4, GraphicsUnit.Point), Color.Black, Color.White);
             pictureBox1.Image = image;
         }
 
-        
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Bitmap Image|*.bmp";
+            saveFileDialog.Title = "Save an Image File";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName == "")
+                return;
+
+            image.Save(saveFileDialog.FileName);
+            MessageBox.Show("Image saved");
+        }
+
+        private Image image;
     }
 }

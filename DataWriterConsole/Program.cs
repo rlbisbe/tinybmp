@@ -1,14 +1,7 @@
 ﻿using DataWriterLib;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataWriterConsole
 {
@@ -16,12 +9,34 @@ namespace DataWriterConsole
     {
         static void Main(string[] args)
         {
-            if (args.Length < 2)
-            {
+            if (!HaveCorrectArguments(args))
                 return;
-            }
-            Image image = new TextDrawer().DrawText(args[0], new Font("Tiny Fonts", 4, GraphicsUnit.Point), Color.Black, Color.White);
-            image.Save(args[1]);
+
+            GenerateImage(args[0],args[1]);
+        }
+
+        private static void GenerateImage(string text, string filename)
+        {
+            Console.WriteLine("Saving string: " + text + "\n");
+            Image image = new TextDrawer().DrawText(text,
+                new Font("Tiny Fonts", 4, GraphicsUnit.Point),
+                Color.Black, Color.White);
+
+            image.Save(filename);
+            Console.WriteLine("String saved in: \n" +
+                Directory.GetCurrentDirectory() + "\\" + filename);
+        }
+
+        private static bool HaveCorrectArguments(string[] args)
+        {
+            if (args.Length == 2)
+                return true;
+
+            Console.WriteLine("\nUsage: DataWriterConsole.exe " +
+                "Number Output_file\n\n- " +
+                "Number: Numbers and dots\n- " +
+                "Output_file: Filename with bmp extension");
+            return false;
         }
     }
 }
