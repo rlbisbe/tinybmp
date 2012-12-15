@@ -32,6 +32,11 @@ namespace DataWriter
             MessageBox.Show("Image saved");
         }
 
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://github.com/rlbisbe/tinybmp");
+        }
+
         private Image image;
     }
 }
